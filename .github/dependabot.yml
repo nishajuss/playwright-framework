@@ -25,5 +25,5 @@ updates:
       interval: weekly
     ignore:
       # Keep the database on the version the shop's maintainers use (10.6.11).
-      # Upgrading to 10.11 failed CI (PR #7).
+      # Upgrading to 10.11 failed CI.
       - dependency-name: yobasystems/alpine-mariadb
