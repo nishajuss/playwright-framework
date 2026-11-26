@@ -1,0 +1,29 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      # One PR for routine minor/patch bumps instead of one per package.
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # Keep Node type definitions on the same major version as the runtime in .nvmrc.
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+
+  # Keeps the pinned shop images used by CI up to date (see shop/docker-compose.yml).
+  - package-ecosystem: docker-compose
+    directory: /shop
+    schedule:
+      interval: weekly
+    ignore:
+      # Keep the database on the version the shop's maintainers use (10.6.11).
+      # Upgrading to 10.11 failed CI (PR #7).
+      - dependency-name: yobasystems/alpine-mariadb

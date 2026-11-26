@@ -1,0 +1,55 @@
+# A private copy of Practice Software Testing (https://github.com/testsmith-io/practice-software-testing),
+# based on the project's own docker-compose.prod.yml, for running the tests without depending on
+# the public site. CI uses it because the public site's bot protection blocks CI servers.
+#
+#   Website: http://localhost:4200    API: http://localhost:8091
+#
+# Start it with `yarn shop:up`, then run tests against it with `yarn test:local`.
+name: toolshop
+
+services:
+  laravel-api:
+    image: testsmith/practice-software-testing-sprint5-api:2.5
+    environment:
+      - DB_PORT=3306
+      - DB_HOST=mariadb
+      - host=localhost
+      - DISABLE_LOGGING=true
+    volumes:
+      - laravel-app-code:/var/www
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  angular-ui:
+    image: testsmith/practice-software-testing-sprint5-ui:2.5
+    ports:
+      - 4200:4200
+    command: bash -c "ng serve --host 0.0.0.0 --port 4200"
+
+  # Serves the API. Replaces the project's prebuilt web image, which is ARM-only (see nginx.conf).
+  web:
+    image: nginx:1.31-alpine
+    ports:
+      - 8091:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - laravel-app-code:/var/www:ro
+    depends_on:
+      - laravel-api
+
+  mariadb:
+    image: yobasystems/alpine-mariadb:10.6.11
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: toolshop
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-uroot', '-proot']
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  laravel-app-code:

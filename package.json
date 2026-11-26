@@ -1,0 +1,43 @@
+{
+  "name": "playwright-framework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "UI, API and accessibility test automation for the Practice Software Testing demo shop, built with Playwright and TypeScript",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:api": "playwright test --project=api",
+    "test:a11y": "playwright test --project=chromium --grep @a11y",
+    "test:local": "BASE_URL=http://localhost:4200 API_BASE_URL=http://localhost:8091 playwright test",
+    "test:headed": "playwright test --project=chromium --headed",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:grep": "playwright test --grep",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "validate": "yarn lint && yarn typecheck",
+    "shop:up": "./shop/start.sh",
+    "shop:down": "docker compose -f shop/docker-compose.yml down -v"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^24",
+    "dotenv": "^18.0.10",
+    "eslint": "^10.4.1",
+    "eslint-plugin-jsonc": "^3.2.0",
+    "eslint-plugin-playwright": "^2.10.4",
+    "globals": "^17.0.0",
+    "jsonc-eslint-parser": "^3.3.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.73.0",
+    "zod": "^4.6.7"
+  }
+}

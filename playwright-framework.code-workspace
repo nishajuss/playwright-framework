@@ -1,0 +1,69 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "json",
+      "jsonc",
+      "json5"
+    ],
+    "eslint.useFlatConfig": true,
+    "cSpell.words": [],
+    "cSpell.minWordLength": 4,
+    "cSpell.showStatus": true,
+    "cSpell.allowCompoundWords": true,
+    "compile-hero.disable-compile-files-on-did-save-code": true,
+    "breadcrumbs.enabled": false,
+    "editor.cursorBlinking": "blink",
+    "editor.lineDecorationsWidth": "30",
+    "editor.folding": false,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.occurrencesHighlight": "off",
+    "editor.roundedSelection": false,
+    "editor.selectionHighlight": true,
+    "editor.scrollBeyondLastLine": false,
+    "explorer.openEditors.visible": 1,
+    "window.zoomLevel": 0,
+    "workbench.editor.showIcons": true,
+    "workbench.startupEditor": "none",
+    "workbench.tree.renderIndentGuides": "none",
+    "editor.formatOnPaste": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    "files.trimFinalNewlines": true,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.guides.indentation": false,
+    "editor.quickSuggestions": {
+      "comments": false,
+      "strings": true,
+      "other": true
+    },
+    "cSpell.ignoreWords": [],
+    "git.ignoreLimitWarning": true,
+    "[json]": {
+      "editor.formatOnSave": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-playwright.playwright",
+      "streetsidesoftware.code-spell-checker",
+      "dbaeumer.vscode-eslint",
+      "eg2.vscode-npm-script",
+      "christian-kohler.npm-intellisense",
+      "techer.open-in-browser",
+      "VisualStudioExptTeam.vscodeintellicode"
+    ]
+  }
+}
